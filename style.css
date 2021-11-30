@@ -13,14 +13,14 @@
   --color-blue: #73aace;
   --color-yellow: #fff7d1;
   --color-dark-blue: #34495e;
-  --color-orange: #f39c12;
+  --color-orange: #ffc30d;
   --color-green: #017798;
   --color-black: #000000;
 
   /* Font size */
-  --font-large: 48px;
-  --font-medium: 28px;
-  --font-regular: 18px;
+  --font-large: 35px;
+  --font-medium: 20px;
+  --font-regular: 17px;
   --font-small: 16px;
   --font-micro: 14px;
   --icon-large: 48px;
@@ -30,6 +30,9 @@
   --weight-bold: 700;
   --weight-semi-bold: 400;
   --weight-regular: 100;
+
+  /* space */
+  --content-margin: 20px;
 }
 
 * {
@@ -59,7 +62,7 @@ body {
 }
 
 .navbar__logo {
-  color: var(--color-pink);
+  color: var(--color-orange);
   font-size: var(--icon-large);
   flex-basis: 80%;
   padding: 1% 5%;
@@ -67,19 +70,19 @@ body {
 
 .navbar__logo i:hover {
   cursor: pointer;
-  color: var(--color-green);
+  color: var(--color-pink);
   transform: scale(1.1);
 }
 
 .navbar__menu__logo {
   padding: 1% 5%;
-  color: var(--color-pink);
+  color: var(--color-orange);
   font-size: var(--icon-medium);
 }
 
 .navbar__menu__logo i:hover {
   cursor: pointer;
-  color: var(--color-green);
+  color: var(--color-pink);
   transform: scale(1.1);
 }
 
@@ -98,16 +101,54 @@ body {
 }
 
 .navbar__menu__item {
-  padding: 20px;
+  padding: var(--content-margin);
   font-weight: var(--weight-bold);
 }
 
 .home {
+  background-image: url(imgs/background.png);
+  height: 65vh;
   padding-top: 80px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-white);
 }
 
-.menu-active {
-  padding-top: 260px;
+.home__title {
+  font-size: var(--font-large);
+  font-weight: 700;
+  margin: var(--content-margin);
+}
+
+.home__description {
+  font-size: var(--font-medium);
+  margin: 0 10%;
+  margin-bottom: calc(var(--content-margin) * 2);
+}
+
+.home__avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 1px solid var(--color-green);
+  margin-bottom: 10px;
+}
+
+.home__contact {
+  outline: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: var(--font-regular);
+  background-color: var(--color-orange);
+}
+
+.home__contact:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  background-color: var(--color-pink);
 }
 
 @media screen and (min-width: 800px) {
@@ -128,5 +169,25 @@ body {
 
   .menu-active {
     padding-top: 80px;
+  }
+}
+
+@media screen and (min-width: 580px) {
+  .home {
+    width: 100%;
+    position: relative;
+    z-index: -1;
+    margin-bottom: 20px;
+  }
+
+  .home:after {
+    content: "";
+    background-image: url(imgs/background.png);
+    position: absolute;
+    bottom: -10px;
+    height: 20px;
+    width: 100%;
+    left: 0;
+    border-radius: 0% 0% 50% 50%;
   }
 }
