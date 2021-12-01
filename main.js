@@ -1,9 +1,27 @@
 "use strict";
 
+const navBarMenu = {
+	homeLogo: document.querySelector(".navbar__logo"),
+	menuLogoBtn: document.querySelector(".navbar__menu__logo"),
 
+	init() {
+		this.menuLogoBtn.addEventListener("click", () => {
+			const navbarMenu = document.querySelector(".navbar__menu");
+			const home = document.querySelector(".home");
+			
+			navbarMenu.classList.toggle("navbar__menu-active");
+			home.classList.toggle("menu-active");
+		})
 
-
-
+		this.homeLogo.addEventListener("click", () => {
+			window.scroll({
+				top: 0,
+				left: 0,
+				behavior: "smooth"
+			});
+		})
+	}
+}
 
 const handleContact = {
 	init() {
@@ -68,19 +86,6 @@ const flexSlider = {
 	}
 }
 
-const navBarMenu = {
-	menuLogoBtn: document.querySelector(".navbar__menu__logo"),
-
-	init() {
-		this.menuLogoBtn.addEventListener("click", () => {
-			const navbarMenu = document.querySelector(".navbar__menu");
-			const home = document.querySelector(".home");
-			
-			navbarMenu.classList.toggle("navbar__menu-active");
-			home.classList.toggle("menu-active");
-		})
-	}
-}
 
 navBarMenu.init();
 flexSlider.init();

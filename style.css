@@ -60,7 +60,6 @@ body {
 .navbar__logo {
   color: var(--color-orange);
   font-size: var(--icon-large);
-  flex-basis: 80%;
   padding: 1% 5%;
 }
 
