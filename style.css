@@ -337,7 +337,7 @@ body {
   width: 80%;
   height: 80%;
   max-width: 550px;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -375,7 +375,7 @@ body {
 }
 
 .contact__column:last-child {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -388,6 +388,9 @@ body {
 
 .contact__column:last-child img:hover {
   cursor: pointer;
+}
+
+.contact__card-active {
   transform: rotateY(0);
   animation: rotate 1s 1;
   animation-direction: alternate;

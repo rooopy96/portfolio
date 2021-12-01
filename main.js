@@ -2,6 +2,26 @@
 
 
 
+
+
+
+const handleContact = {
+	init() {
+		const contactCard = document.querySelector(".contact__card");
+		const contactMain = document.querySelector(".contact__main");
+
+		contactCard.addEventListener("mousedown", () => {
+			contactCard.classList.add("contact__card-active");
+			
+		});
+
+		contactCard.addEventListener("animationend", () => {
+			contactCard.style.display = "none";
+			contactMain.style.display = "flex";
+		})
+	}
+}
+
 const flexSlider = {
 	currentPosition: 0,
 	positionArr: [0, -100, -200, -300],
@@ -62,6 +82,6 @@ const navBarMenu = {
 	}
 }
 
-
 navBarMenu.init();
 flexSlider.init();
+handleContact.init();
