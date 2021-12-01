@@ -123,6 +123,7 @@ body {
   font-size: var(--font-large);
   font-weight: 700;
   margin: var(--content-margin);
+  color: var(--color-orange);
 }
 
 .home__description {
@@ -238,6 +239,92 @@ body {
   font-weight: 100;
 }
 
+/* Portfolio */
+.portfolio {
+  width: 100%;
+  margin-top: calc(var(--content-margin) * 3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.portfolio__title {
+  font-size: 16px;
+  margin-top: var(--content-margin);
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.portfolio__projects {
+  width: 100%;
+}
+
+.project {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--content-margin) * 3) 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.project:last-child {
+  border-bottom: none;
+  margin-bottom: calc(var(--content-margin) * 2);
+}
+
+.project__image {
+  width: 90%;
+  max-width: 560px;
+  margin: var(--content-margin);
+}
+
+.project__column {
+  text-align: center;
+}
+
+.project__title {
+  font-weight: 700;
+  font-size: calc(var(--font-medium) * 1.2);
+  display: inline-block;
+  margin-bottom: var(--content-margin);
+}
+
+.project__date {
+  background-color: var(--color-pink);
+  font-size: var(--font-small);
+  color: var(--color-white);
+  font-weight: 700;
+  display: inline-block;
+  padding: 2px 4px;
+  border-radius: 7px;
+  transform: translateY(-3px) translateX(5px);
+}
+
+.project__description {
+  margin-bottom: calc(var(--content-margin) * 2);
+  font-size: calc(var(--font-small) * 1.2);
+  color: var(--color-light-grey);
+}
+
+.project__btn {
+  text-decoration: none;
+  font-size: calc(var(--font-small) * 1.3);
+  outline: none;
+  color: var(--color-pink);
+  border: 1px solid var(--color-pink);
+  background-color: var(--color-white);
+  padding: 14px 30px;
+  border-radius: 30px;
+  transition: background-color 100ms ease-in-out;
+}
+
+.project__btn:hover {
+  cursor: pointer;
+  background-color: var(--color-pink);
+  color: var(--color-white);
+}
+
 @media screen and (min-width: 580px) {
   .home {
     z-index: 1;
@@ -286,5 +373,20 @@ body {
 @media screen and (min-width: 1000px) {
   .skill {
     flex-basis: 33%;
+  }
+
+  .project {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .project__image {
+    flex-basis: 60%;
+  }
+  .project__column {
+    flex-basis: 40%;
+    text-align: start;
+  }
+  .project__btn {
+    display: inline-block;
   }
 }
