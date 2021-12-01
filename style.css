@@ -175,7 +175,6 @@ body {
   opacity: 0.3;
   font-size: var(--icon-medium);
   transition: opacity 300ms ease-in;
-  height: 100%;
   flex-basis: 15%;
 }
 
@@ -189,8 +188,8 @@ body {
   height: 100%;
   width: 100%;
   padding-left: 0;
-  display: flex;
   overflow: hidden;
+  display: flex;
   flex-basis: 70%;
 }
 
@@ -202,10 +201,24 @@ body {
   justify-content: center;
   align-items: center;
   height: 100%;
+  transition: transform 300ms ease-in-out;
 }
 
-.skill:first-child {
-  width: 100%;
+.skill:nth-child(1) {
+  transform: translateX(0);
+  flex-shrink: 0;
+}
+.skill:nth-child(2) {
+  transform: translateX(0);
+  flex-shrink: 0;
+}
+.skill:nth-child(3) {
+  transform: translateX(0);
+  flex-shrink: 0;
+}
+.skill:nth-child(4) {
+  transform: translateX(0);
+  flex-shrink: 0;
 }
 
 .skill__icon {
