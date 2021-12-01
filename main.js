@@ -27,6 +27,7 @@ const handleContact = {
 	init() {
 		const contactCard = document.querySelector(".contact__card");
 		const contactMain = document.querySelector(".contact__main");
+		const contactBtn = document.querySelector(".home__contact");
 
 		contactCard.addEventListener("mousedown", () => {
 			contactCard.classList.add("contact__card-active");
@@ -36,6 +37,18 @@ const handleContact = {
 		contactCard.addEventListener("animationend", () => {
 			contactCard.style.display = "none";
 			contactMain.style.display = "flex";
+		});
+
+		contactBtn.addEventListener("click", () => {
+			this.moveToContactPage();
+		})
+	},
+
+	moveToContactPage() {
+		window.scroll({
+			top: document.documentElement.scrollHeight,
+			left: 0,
+			behavior: "smooth"
 		})
 	}
 }
