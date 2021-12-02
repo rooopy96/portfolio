@@ -1,10 +1,14 @@
 "use strict";
 
 const navBarMenu = {
+	navbar: document.querySelector(".navbar"),
 	homeLogo: document.querySelector(".navbar__logo"),
 	menuLogoBtn: document.querySelector(".navbar__menu__logo"),
+	navMenu: document.querySelector(".navbar__menu"),
+	navMenuItem: document.querySelectorAll(".navbar__menu__item"),
 
 	init() {
+		// Handle to Logo btn
 		this.menuLogoBtn.addEventListener("click", () => {
 			const navbarMenu = document.querySelector(".navbar__menu");
 			const home = document.querySelector(".home");
@@ -19,6 +23,38 @@ const navBarMenu = {
 				left: 0,
 				behavior: "smooth"
 			});
+		})
+
+		// Scroll to section
+		this.navMenu.addEventListener("click", (event) => {
+			const target = event.target;
+			const link = target.dataset.page;
+
+			if(!link) {
+				return;
+			}
+
+			if(link === ".skills") {
+				document.querySelector(link).scrollIntoView({
+					behavior: "smooth",
+					block: "center"
+				});
+			} else {
+				document.querySelector(link).scrollIntoView({
+					behavior: "smooth",
+					block: "start"
+				});
+			}
+
+			
+		})
+
+		window.addEventListener("scroll", () => {
+			if(window.scrollY > this.navbar.clientHeight) {
+				this.navbar.classList.add("navbar-dark");
+			} else {
+				this.navbar.classList.remove("navbar-dark");
+			}
 		})
 	}
 }
@@ -99,6 +135,34 @@ const flexSlider = {
 	}
 }
 
+
+
+window.addEventListener("scroll", () => {
+	const homeHeight = document.querySelector(".home").clientHeight;
+	const skillsHeight = document.querySelector(".skills").clientHeight;
+	const navMenu = document.querySelectorAll(".navbar__menu__item");
+
+	if(scrollY < homeHeight) {
+		navMenu[1].classList.remove("active");
+		navMenu[2].classList.remove("active");
+		navMenu[0].classList.remove("active");
+	}
+	if(scrollY > homeHeight / 2) {
+		navMenu[1].classList.remove("active");
+		navMenu[2].classList.remove("active");
+		navMenu[0].classList.add("active");
+	} 
+	if(scrollY > homeHeight / 2 + skillsHeight ) {
+		navMenu[0].classList.remove("active");
+		navMenu[2].classList.remove("active");
+		navMenu[1].classList.add("active");
+	}
+	if(scrollY >= document.querySelector("body").clientHeight / 2) {
+		navMenu[0].classList.remove("active");
+		navMenu[1].classList.remove("active");
+		navMenu[2].classList.add("active");
+	}
+})
 
 navBarMenu.init();
 flexSlider.init();
