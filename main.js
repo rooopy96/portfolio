@@ -138,14 +138,15 @@ const flexSlider = {
 
 
 window.addEventListener("scroll", () => {
-	const homeHeight = document.querySelector(".home").clientHeight;
+	const homeContainer = document.querySelector(".home__container");
+	const homeHeight = homeContainer.getBoundingClientRect().height;
 	const skillsHeight = document.querySelector(".skills").clientHeight;
 	const navMenu = document.querySelectorAll(".navbar__menu__item");
 
+	homeContainer.style.opacity = 1 - window.scrollY / homeHeight;
+
 	if(scrollY < homeHeight) {
-		navMenu[1].classList.remove("active");
-		navMenu[2].classList.remove("active");
-		navMenu[0].classList.remove("active");
+		navMenu.forEach((menu) => menu.classList.remove("active"));
 	}
 	if(scrollY > homeHeight / 2) {
 		navMenu[1].classList.remove("active");
@@ -157,13 +158,20 @@ window.addEventListener("scroll", () => {
 		navMenu[2].classList.remove("active");
 		navMenu[1].classList.add("active");
 	}
-	if(scrollY >= document.querySelector("body").clientHeight / 2) {
+	if(scrollY > homeHeight + document.querySelector(".portfolio").clientHeight) {
 		navMenu[0].classList.remove("active");
 		navMenu[1].classList.remove("active");
 		navMenu[2].classList.add("active");
 	}
+
+	
 })
 
 navBarMenu.init();
 flexSlider.init();
 handleContact.init();
+
+console.log(scrollY);
+console.log(window.innerHeight);
+
+console.log(document.querySelector("body").clientHeight)
