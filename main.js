@@ -170,8 +170,3 @@ window.addEventListener("scroll", () => {
 navBarMenu.init();
 flexSlider.init();
 handleContact.init();
-
-console.log(scrollY);
-console.log(window.innerHeight);
-
-console.log(document.querySelector("body").clientHeight)

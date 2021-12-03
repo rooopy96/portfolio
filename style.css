@@ -437,6 +437,20 @@ body {
   }
 }
 
+@media screen and (max-width: 380px) {
+  .home__title {
+    font-size: 22px;
+    margin-top: 10px;
+  }
+  .home__description {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+  .home__avatar {
+    margin-bottom: 10px;
+  }
+}
+
 @media screen and (min-width: 580px) {
   .home {
     z-index: 1;
