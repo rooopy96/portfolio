@@ -10,10 +10,9 @@ const navBarMenu = {
 	init() {
 		// Handle to Logo btn
 		this.menuLogoBtn.addEventListener("click", () => {
-			const navbarMenu = document.querySelector(".navbar__menu");
 			const home = document.querySelector(".home");
 			
-			navbarMenu.classList.toggle("navbar__menu-active");
+			this.navMenu.classList.toggle("navbar__menu-active");
 			home.classList.toggle("menu-active");
 		})
 
@@ -35,11 +34,13 @@ const navBarMenu = {
 			}
 
 			if(link === ".skills") {
+				this.navMenu.classList.remove("navbar__menu-active");
 				document.querySelector(link).scrollIntoView({
 					behavior: "smooth",
 					block: "center"
 				});
 			} else {
+				this.navMenu.classList.remove("navbar__menu-active");
 				document.querySelector(link).scrollIntoView({
 					behavior: "smooth",
 					block: "start"
