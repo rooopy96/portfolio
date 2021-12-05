@@ -416,27 +416,6 @@ body {
   }
 }
 
-@media screen and (min-width: 1000px) {
-  .skill {
-    flex-basis: 33%;
-  }
-
-  .project {
-    flex-direction: row;
-    justify-content: center;
-  }
-  .project__image {
-    flex-basis: 60%;
-  }
-  .project__column {
-    flex-basis: 40%;
-    text-align: start;
-  }
-  .project__btn {
-    display: inline-block;
-  }
-}
-
 @media screen and (max-width: 380px) {
   .home__title {
     font-size: 22px;
@@ -503,5 +482,26 @@ body {
 
   .skill {
     flex-basis: 50%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .skill {
+    flex-basis: 33%;
+  }
+
+  .project {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .project__image {
+    flex-basis: 60%;
+  }
+  .project__column {
+    flex-basis: 40%;
+    text-align: start;
+  }
+  .project__btn {
+    display: inline-block;
   }
 }
