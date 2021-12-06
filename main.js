@@ -237,7 +237,14 @@ window.addEventListener("scroll", () => {
 	
 })
 
+function preload() {
+	let pic = new Image();
+
+	pic.src = "imgs/card.png";
+}
+
 navBarMenu.init();
 // flexSlider.init();
 handleContact.init();
 slider.init();
+preload();
