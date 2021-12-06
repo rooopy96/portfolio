@@ -136,7 +136,76 @@ const flexSlider = {
 	}
 }
 
+const slider = {
+	slider: document.querySelector(".skill__lists"),
+	prevBtn: document.querySelector(".skills__btn-left"),
+	nextBtn: document.querySelector(".skills__btn-right"),
+	skills: document.querySelectorAll(".skill"),
+	count: 1,
 
+	addEvent(size) {
+		this.prevBtn.addEventListener("click", () => {
+			if(this.count <= 0) return;
+			this.count--;
+			this.slider.style.transition = "transform 300ms ease-in";
+			this.slider.style.transform = `translateX(${-this.count * size}px)`;
+		})
+
+		this.nextBtn.addEventListener("click", () => {
+			if(this.count >= this.skills.length - 1) return;
+			this.count++
+			this.slider.style.transition = "transform 300ms ease-in";
+			this.slider.style.transform = `translateX(${-this.count * size}px)`;
+		})
+
+		this.slider.addEventListener("transitionend", () => {
+			if(!this.skills[this.count].id) {
+				return;
+			}
+			this.handleClone(this.skills[this.count].id, size);
+		})
+	},
+
+	handleClone(id, size) {
+		this.slider.style.transition = "none";
+
+		if(id === "skill-firstClone") {
+			this.count = this.skills.length - this.count;
+		} else {
+			this.count = this.skills.length - 2;
+		}
+
+		this.slider.style.transform = `translateX(${-this.count * size}px)`;
+	},
+
+	getSize() {
+		const sliderBox = document.querySelector(".skill__slider");
+		let size;
+
+		if(window.innerWidth <= 800) {
+			size = sliderBox.getBoundingClientRect().width
+		} else if(window.innerWidth >= 1000) {
+			size = sliderBox.getBoundingClientRect().width / 3;
+		} else if(window.innerHeight >= 800) {
+			size = sliderBox.getBoundingClientRect().width / 2;
+		}
+
+		return size;
+	},
+
+	init() {
+		let size = this.getSize();
+
+		this.slider.style.transform =  `translateX(${-this.count * size}px)`;
+
+		window.addEventListener("resize", () => {
+			size = this.getSize()
+			this.slider.style.transform =  `translateX(${-this.count * size}px)`;
+		})
+
+		this.addEvent(size);
+	}
+}
 
 window.addEventListener("scroll", () => {
 	const homeContainer = document.querySelector(".home__container");
@@ -169,5 +238,6 @@ window.addEventListener("scroll", () => {
 })
 
 navBarMenu.init();
-flexSlider.init();
+// flexSlider.init();
 handleContact.init();
+slider.init();

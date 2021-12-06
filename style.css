@@ -168,8 +168,10 @@ body {
 .skills {
   width: 100%;
   height: 50vh;
+  padding: 0px 20px 20px 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -190,42 +192,28 @@ body {
   opacity: 1;
 }
 
-.skills__list {
+.skill__slider {
+  overflow: hidden;
+}
+
+.skill__lists {
   box-sizing: inherit;
   height: 100%;
   width: 100%;
   padding-left: 0;
-  overflow: hidden;
   display: flex;
-  flex-basis: 70%;
+  position: relative;
 }
 
 .skill {
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  flex-basis: 100%;
   flex-shrink: 0;
+  flex-basis: 100%;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  transition: transform 300ms ease-in-out;
-}
-
-.skill:nth-child(1) {
-  transform: translateX(0);
-  flex-shrink: 0;
-}
-.skill:nth-child(2) {
-  transform: translateX(0);
-  flex-shrink: 0;
-}
-.skill:nth-child(3) {
-  transform: translateX(0);
-  flex-shrink: 0;
-}
-.skill:nth-child(4) {
-  transform: translateX(0);
-  flex-shrink: 0;
 }
 
 .skill__icon {
@@ -416,7 +404,7 @@ body {
   }
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 499px) {
   .home__title {
     font-size: 22px;
     margin-top: 10px;
@@ -428,9 +416,12 @@ body {
   .home__avatar {
     margin-bottom: 10px;
   }
+  .skill__slider {
+    max-width: 250px;
+  }
 }
 
-@media screen and (min-width: 580px) {
+@media screen and (min-width: 500px) {
   .home {
     z-index: 1;
     width: 100%;
@@ -447,6 +438,14 @@ body {
     width: 100%;
     left: 0;
     border-radius: 0% 0% 50% 50%;
+  }
+
+  .skill__slider {
+    width: 350px;
+  }
+
+  .skill {
+    width: 350px;
   }
 }
 
@@ -480,16 +479,17 @@ body {
     padding-top: 80px;
   }
 
+  .skill__slider {
+    width: 600px;
+  }
+
   .skill {
+    width: 300px;
     flex-basis: 50%;
   }
 }
 
 @media screen and (min-width: 1000px) {
-  .skill {
-    flex-basis: 33%;
-  }
-
   .project {
     flex-direction: row;
     justify-content: center;
@@ -503,5 +503,14 @@ body {
   }
   .project__btn {
     display: inline-block;
+  }
+
+  .skill__slider {
+    width: 800px;
+  }
+
+  .skill {
+    width: 400px;
+    flex-basis: 33%;
   }
 }
