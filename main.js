@@ -137,73 +137,70 @@ const flexSlider = {
 }
 
 const slider = {
-	slider: document.querySelector(".skill__lists"),
+	slideBox: document.querySelector(".skill__lists"),
+	slides: document.querySelectorAll(".skill"),
 	prevBtn: document.querySelector(".skills__btn-left"),
 	nextBtn: document.querySelector(".skills__btn-right"),
-	skills: document.querySelectorAll(".skill"),
-	count: 1,
+	
+	currentPosition: 1,
+	moveSize: 0,
 
-	addEvent(size) {
-		this.prevBtn.addEventListener("click", () => {
-			if(this.count <= 0) return;
-			this.count--;
-			this.slider.style.transition = "transform 300ms ease-in";
-			this.slider.style.transform = `translateX(${-this.count * size}px)`;
-		})
-
-		this.nextBtn.addEventListener("click", () => {
-			if(this.count >= this.skills.length - 1) return;
-			this.count++
-			this.slider.style.transition = "transform 300ms ease-in";
-			this.slider.style.transform = `translateX(${-this.count * size}px)`;
-		})
-
-		this.slider.addEventListener("transitionend", () => {
-			if(!this.skills[this.count].id) {
-				return;
-			}
-			this.handleClone(this.skills[this.count].id, size);
-		})
-	},
-
-	handleClone(id, size) {
-		this.slider.style.transition = "none";
-
-		if(id === "skill-firstClone") {
-			this.count = this.skills.length - this.count;
+	move(n) {
+		if(n === "prev") {
+			this.currentPosition < 0 ? this.currentPosition = 1 : this.currentPosition--;
+			this.slideBox.style.transform = `translateX(${this.currentPosition * -this.moveSize}%)`;
+		} else if(n === "next") {
+			this.currentPosition === this.slides.length ? this.currentPosition = 1 : this.currentPosition++;
+			this.slideBox.style.transform = `translateX(${this.currentPosition * -this.moveSize}%)`;
 		} else {
-			this.count = this.skills.length - 2;
+			this.slideBox.style.transform = `translateX(${this.currentPosition * -this.moveSize}%)`;
 		}
-
-		this.slider.style.transform = `translateX(${-this.count * size}px)`;
 	},
 
-	getSize() {
-		const sliderBox = document.querySelector(".skill__slider");
-		let size;
-
-		if(window.innerWidth <= 800) {
-			size = sliderBox.getBoundingClientRect().width
-		} else if(window.innerWidth >= 1000) {
-			size = sliderBox.getBoundingClientRect().width / 3;
-		} else if(window.innerHeight >= 800) {
-			size = sliderBox.getBoundingClientRect().width / 2;
+	getMoveSize() {
+		let size
+		if(window.innerWidth > 1000) {
+			size = 33;
+		} else if(window.innerWidth > 800 && window.innerWidth < 1000) {
+			size = 50;
+		} else {
+			size = 100;
 		}
-
 		return size;
 	},
 
 	init() {
-		let size = this.getSize();
+		this.moveSize = this.getMoveSize();
 
-		this.slider.style.transform =  `translateX(${-this.count * size}px)`;
+		console.log(this.moveSize);
+		this.slideBox.style.transform = `translateX(${-this.moveSize}%)`;
 
 		window.addEventListener("resize", () => {
-			size = this.getSize()
-			this.slider.style.transform =  `translateX(${-this.count * size}px)`;
+			this.moveSize = this.getMoveSize();
+			this.slideBox.style.transform = `translateX(${-this.moveSize}%)`;
 		})
-
-		this.addEvent(size);
+		
+		this.prevBtn.addEventListener("click", () => {
+			this.move("prev")
+			this.slideBox.style.transition = "transform 300ms ease-in";
+		})
+		
+		this.nextBtn.addEventListener("click", () => {
+			this.move("next")
+			this.slideBox.style.transition = "transform 300ms ease-in";
+		})
+		
+		this.slideBox.addEventListener("transitionend", () => {
+			if(this.slides[this.currentPosition].id === "skill-firstClone") {
+				this.slideBox.style.transition = "none";
+				this.currentPosition = 1;
+				this.move();
+			} else if(this.slides[this.currentPosition].id === "skill-lastClone") {
+				this.slideBox.style.transition = "none";
+				this.currentPosition = this.slides.length - 2;
+				this.move();
+			}
+		})
 	}
 }
 
